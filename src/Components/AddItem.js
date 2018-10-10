@@ -10,8 +10,9 @@ class AddItem extends Component {
             price: '',
         }
     }
-    // componentWillMount() {
+
     render() {
+
         return (
             <form>
                 <div class="form-group">
@@ -27,12 +28,15 @@ class AddItem extends Component {
                     <label for="exampleFormControlSelect1">Products</label>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <select
-                            onChange={e => this.setState({ price: e.target.data, item: e.target.value })}
+                            onChange={e => this.setState({ item: e.target.value.split(' ¢')[0], price: e.target.value.split(' ¢')[1] })}
                             style={{ width: '90vw' }} class="form-control">
                             <option selected disabled>Select an Option...</option>
                             {this.props.products.map(item => {
                                 return (
-                                    <option value={item.name} data={item.priceInCents} >{item.name} &cent;{item.priceInCents}</option>
+                                    // <option value={obj} data={item.priceInCents} >{item.name} &cent;{item.priceInCents}</option>
+                                    // <option value={item.name + '@' + item.priceInCents} data={item.priceInCents} >{item.name} &cent;{item.priceInCents}</option>
+                                    <option>{item.name} &cent;{item.priceInCents}</option>
+                                    // <option value={{ name: item.name, price: item.priceInCents }} data={item.priceInCents} >{item.name} &cent;{item.priceInCents}</option>
                                 )
                             })}
                         </select>

@@ -25,15 +25,13 @@ class App extends Component {
       { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
       { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
     ],
-    newObj: {
-      product: {
-        // name: option.selected.value,
-        // priceInCents: option.selected.data - item
-        name: null,
-        priceInCents: null
-      },
-      quantity: null
-    }
+    // newObj: {
+    //   product: {
+    //     name: null,
+    //     priceInCents: null
+    //   },
+    //   quantity: null
+    // }
   }
   render() {
     return (
