@@ -1,117 +1,51 @@
-import React from 'react'
-import { DropdownMenu, MenuItem } from 'react-bootstrap-dropdown-menu';
+import React, { Component } from 'react'
 
-const AddItem = (props) => {
-    // constructor(props)
-    // super(props);
+class AddItem extends Component {
 
-    // this.toggle = this.toggle.bind(this);
-    // this.state = {
-    //     dropdownOpen: false
-    // };
-
-
-    // toggle()
-    // this.setState(prevState => ({
-    //     dropdownOpen: !prevState.dropdownOpen
-    // }));
-
-
-    var dropDownItems = props.products.map(item => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            quantity: '',
+            item: '',
+            price: '',
+        }
+    }
+    // componentWillMount() {
+    render() {
         return (
-            // <a className="dropdown-item" href="#">{item.name}{item.priceInCents}</a>
-            // <MenuItem text={item.name}{item.priceInCents} location="/home" />
-            // <div className='row' style={{ display: 'flex', justifyContent: 'center' }}>
-            //     <li ><a href="#">{item.name} {item.priceInCents}</a></li>
-            // </div>
-            <option href="#">{item.name} {item.priceInCents}</option>
-
-            // <li><a href="#">{item.name}{item.priceInCents}</a></li>
-
-        )
-    })
-
-    return (
-        <React.Fragment>
             <form>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Quantity</label>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <input style={{ width: '90vw' }} type="email" class="form-control" id="exampleFormControlInput1" placeholder="Input Desired Quantity"></input>
+                        <input
+                            onChange={e => this.setState({ quantity: e.target.value })}
+                            style={{ width: '90vw' }} type="number" min='0' class="form-control" placeholder="Input Desired Quantity"></input>
+                        <h1>{this.state.quantity}</h1>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Products</label>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <select style={{ width: '90vw' }} class="form-control" id="exampleFormControlSelect1">
+                        <select
+                            onChange={e => this.setState({ price: e.target.data, item: e.target.value })}
+                            style={{ width: '90vw' }} class="form-control">
                             <option selected disabled>Select an Option...</option>
-                            {dropDownItems}
+                            {this.props.products.map(item => {
+                                return (
+                                    <option value={item.name} data={item.priceInCents} >{item.name} &cent;{item.priceInCents}</option>
+                                )
+                            })}
                         </select>
+                        <h6>{this.state.item}</h6>
+                        <h6>{this.state.price}</h6>
                     </div>
                 </div>
-            </form>
-        </React.Fragment>
+                <button
+                    // onClick={submitAddItem} 
+                    style={{ marginLeft: '80px' }} type="button" class="btn btn-primary">Submit</button>
+            </form >
+        );
+    }
 
-        // <div class="form-group">
-        //     <label for="exampleFormControlSelect1">Example select</label>
-        //     <select class="form-control" id="exampleFormControlSelect1">
-        //         <option>1</option>
-        //         <option>2</option>
-        //         <option>3</option>
-        //         <option>4</option>
-        //         <option>5</option>
-        //     </select>
-        // </div>
-
-
-        // <DropdownMenu>
-        //     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        //         Select an Option...
-        //     </button>
-        //     {dropDownItems}
-        //     <MenuItem text={dropDownItems} location="/home" />
-        // </DropdownMenu>
-
-
-        // <DropdownMenu userName="Chris Smith">
-        //     <MenuItem text="Home" location="/home" />
-        //     <MenuItem text="Edit Profile" location="/profile" />
-        //     <MenuItem text="Change Password" location="/change-password" />
-        //     <MenuItem text="Privacy Settings" location="/privacy-settings" />
-        //     <MenuItem text="Delete Account" onClick={this.deleteAccount} />
-        //     <MenuItem text="Logout" onClick={this.logout} />
-        // </DropdownMenu>
-        // <div className="dropdown">
-        //     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        //         Select an Option...
-        //     </button>
-        //     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        //         {dropDownItems}
-        //     </div>
-        // </div>
-        // <div>
-        //     <div class="dropdown">
-        //         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select an Option...
-        //     <span class="caret"></span></button>
-        //         <ul class="dropdown-menu">
-        //             <li><a href='#'>hi</a></li>
-        //             <li>hi</li>
-        //             <li>hi</li>
-
-        //         </ul>
-        //     </div>
-        // </div>
-        //         <div class="dropdown">
-        //             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-        //   <span class="caret"></span></button>
-        //             <ul class="dropdown-menu">
-        //                 <li><a href="#">HTML</a></li>
-        //                 <li><a href="#">CSS</a></li>
-        //                 <li><a href="#">JavaScript</a></li>
-        //             </ul>
-        //         </div>
-
-
-    )
 }
 export default AddItem

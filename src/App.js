@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CartHeader from './Components/CartHeader.js';
 import CartFooter from './Components/CartFooter.js';
 import CartItems from './Components/CartItems.js';
-import AddItem from './Components/AddItem.js'
+import AddItem from './Components/AddItem.js';
 import './App.css';
 
 class App extends Component {
@@ -24,14 +24,23 @@ class App extends Component {
       { id: 46, name: 'Intelligent Leather Clock', priceInCents: 2999 },
       { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
       { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
-    ]
+    ],
+    newObj: {
+      product: {
+        // name: option.selected.value,
+        // priceInCents: option.selected.data - item
+        name: null,
+        priceInCents: null
+      },
+      quantity: null
+    }
   }
   render() {
     return (
       <div className="App">
         <CartHeader />
         <CartItems cartItemsList={this.state.cartItemsList} />
-        <AddItem products={this.state.products} />
+        <AddItem products={this.state.products} newObj={this.state.newObj} />
         <CartFooter year={this.state.year} />
       </div >
     );
