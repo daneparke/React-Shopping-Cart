@@ -25,20 +25,59 @@ class App extends Component {
       { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
       { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
     ],
-    // newObj: {
-    //   product: {
-    //     name: null,
-    //     priceInCents: null
-    //   },
-    //   quantity: null
-    // }
+    newObj: {
+      product: {
+        item: null,
+        price: null
+      },
+      quantity: null
+    },
+    total: 3396
+  }
+  updateItemPrice = (event) => {
+    this.setState({
+      newObj: {
+        product: {
+          item: event.target.value.split(' ¢')[0],
+          price: event.target.value.split(' ¢')[1]
+        }
+      }
+    })
+  }
+
+  updateQuantity = (event) => {
+    this.setState({
+      quantity: event.target.value
+    })
+  }
+  addItems = (event) => {
+    event.preventDefault()
+    var newItem = {
+      id: this.state.cartItemsList.length + 1,
+      product: {
+        name: this.state.newObj.product.item,
+        priceInCents: this.state.newObj.product.price
+      },
+      quantity: this.state.quantity,
+      itemTotal: Number(this.state.quantity * this.state.newObj.product.price)
+    }
+    this.setState({
+      cartItemsList: [...this.state.cartItemsList, newItem],
+    })
+    this.setState({
+      total: this.state.total + newItem.itemTotal
+    })
   }
   render() {
     return (
       <div className="App">
         <CartHeader />
-        <CartItems cartItemsList={this.state.cartItemsList} />
-        <AddItem products={this.state.products} newObj={this.state.newObj} />
+        <CartItems cartItemsList={this.state.cartItemsList} createTotal={this.createTotal} />
+        <h2 class='row totalRow'>Total:&cent;<h2>{this.state.total}</h2></h2>
+        <AddItem products={this.state.products} cartItemsList={this.state.cartItemsList}
+          newObj={this.state.newObj} updateItemPrice={this.updateItemPrice}
+          updateQuantity={this.updateQuantity}
+          addItems={this.addItems} />
         <CartFooter year={this.state.year} />
       </div >
     );

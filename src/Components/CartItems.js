@@ -1,7 +1,6 @@
 import React from 'react';
 import CartItem from './CartItem.js';
 
-
 const CartItems = (props) => {
     return (
         <div className="container">
@@ -14,7 +13,7 @@ const CartItems = (props) => {
                         <div className="col-md-2"><b>Quantity</b></div>
                     </div>
                 </div>
-                <CartItem cartItemsList={props.cartItemsList} />
+                <CartItem cartItemsList={props.cartItemsList} createTotal={props.createTotal} />
             </div>
         </div>
     )

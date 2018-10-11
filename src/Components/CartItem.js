@@ -13,9 +13,11 @@ const CartItem = (props) => {
         )
     })
     return (
-        <div className="collection-item">
-            {cartItems}
-        </div>
+        <>
+            <div className="collection-item">
+                {cartItems}
+            </div>
+        </>
     )
 }
 
